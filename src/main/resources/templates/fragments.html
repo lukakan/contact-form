@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<header th:fragment="top-bar">
+    <nav class="navbar navbar-dark bg-dark navbar-expand-md fixed-top">
+        <a class="navbar-brand d-inline-block" href="/">
+            <i class="fas fa-pen-alt mx-3"></i>
+            Copywriting
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main-menu" style="color: white;">
+            <ul class="navbar-nav px-3">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/">Strona głowna</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/contact">Kontakt</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/">Klienci</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<footer class="footer mt-auto fixed-bottom" th:fragment="footer">
+    <div class="text-center text-white bg-dark">
+        <div class="container p-1">
+            <p>Zapraszamy do kontaktu </p>
+            <p><i class="far fa-envelope"></i> some.mail@somedomein.com</p>
+            <p><i class="fas fa-phone"></i> +48 555 555 555</p>
+        </div>
+        <div class="text-center pb-1" style="background: #191c1a">
+            © 2020 Copyright: Copywritting
+        </div>
+    </div>
+</footer>
+
+
+</body>
+</html>
