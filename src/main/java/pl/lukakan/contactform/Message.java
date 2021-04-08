@@ -1,43 +1,57 @@
 package pl.lukakan.contactform;
 
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+
 public class Message {
-    private String title;
-    private String author;
-    private String content;
-    private String body;
 
-    public Message() {
+    private final String body;
+    private final String title;
+    private final String replyTo;
+    private final TemplateEngine templateEngine;
+    private final String sendTo;
+    private final String sendFrom;
+    private final String template;
+
+    public Message(SendMessageForm messageForm, TemplateEngine templateEngine, String sendTo, String sendFrom, String template, String replyTo) {
+        this.sendTo = sendTo;
+        this.templateEngine = templateEngine;
+        this.title = messageForm.getTitle();
+        this.replyTo = replyTo;
+        this.sendFrom = sendFrom;
+        this.template = template;
+        this.body = prepareMessageBody(messageForm);
     }
 
-    public String getTitle() {
-        return title;
+    private String prepareMessageBody(SendMessageForm message) {
+        SendMessageForm result = new SendMessageForm();
+        result.setAuthorEmailAddress(message.getAuthorEmailAddress());
+        result.setContent(message.getContent());
+        result.setTitle(message.getTitle());
+        Context context = new Context();
+        context.setVariable("senderMail", message.getAuthorEmailAddress());
+        context.setVariable("senderName", message.getAuthorName());
+        context.setVariable("content", message.getContent());
+        return templateEngine.process(template, context);
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
+    public String getSendTo() {
+        return sendTo;
     }
 
     public String getBody() {
         return body;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public String getTitle() {
+        return title;
+    }
+
+    public String getReplyTo() {
+        return replyTo;
+    }
+
+    public String getSendFrom() {
+        return sendFrom;
     }
 }

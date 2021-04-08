@@ -7,15 +7,20 @@
 </head>
 <body>
     <div layout:fragment="content">
-        <div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
-        <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
+        <div class="alert alert-primary" role="alert" th:if="${feedback == 'success'}">Wiadomość została wysłana.</div>
+        <div class="alert alert-danger" role="alert" th:if="${feedback == 'error'}">Wiadomośc nie została wysłana.</div>
         <form th:object="${message}" th:method="post" th:action="@{/send}" name="contactForm" onsubmit="return validateForm()">
             <div class="d-flex justify-content-center mt-5">
                 <div class="col-sm-10 col-md-5 mt-5">
                     <div class="m-3">
+                        <label for="name" class="form-label">Imię</label>
+                        <div id="name-validator" class="validator"></div>
+                        <input type="text" id="name" class="form-control" th:field="*{authorName}">
+                    </div>
+                    <div class="m-3">
                         <label for="email-address" class="form-label">Adres email</label>
                         <div id="mail-validator" class="validator"></div>
-                        <input type="email" id="email-address" class="form-control" th:field="*{author}">
+                        <input type="email" id="email-address" class="form-control" th:field="*{authorEmailAddress}">
                     </div>
                     <div class="m-3">
                         <label for="title" class="form-label">Tytuł</label>

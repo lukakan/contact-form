@@ -17,15 +17,14 @@ public class MailService {
         this.javaMailSender = javaMailSender;
     }
 
-    public void sendMail(Message message, String targetEmailAddress, String senderEmailAddress) throws MessagingException {
+    public void sendMail(Message ownerMessage) throws MessagingException {
         MimeMessage mail = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mail, "UTF-8");
-        helper.setFrom(senderEmailAddress);
-        helper.setTo(targetEmailAddress);
-        helper.setReplyTo(message.getAuthor());
-        helper.setSubject(message.getTitle());
-        helper.setText(message.getBody(), true);
+        helper.setFrom(ownerMessage.getSendFrom());
+        helper.setTo(ownerMessage.getSendTo());
+        helper.setReplyTo(ownerMessage.getReplyTo());
+        helper.setSubject(ownerMessage.getTitle());
+        helper.setText(ownerMessage.getBody(), true);
         javaMailSender.send(mail);
-
     }
 }
