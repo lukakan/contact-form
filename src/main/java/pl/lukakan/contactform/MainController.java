@@ -13,12 +13,12 @@ import javax.mail.MessagingException;
 public class MainController {
 
     private final MailService mailService;
-    private final MessageRepository messageRepository;
+    private final MessageCreator messageCreator;
 
     @Autowired
-    public MainController(MailService mailService, MessageRepository messageRepository) {
+    public MainController(MailService mailService, MessageCreator messageCreator) {
         this.mailService = mailService;
-        this.messageRepository = messageRepository;
+        this.messageCreator = messageCreator;
     }
 
     @GetMapping("/")
@@ -34,8 +34,8 @@ public class MainController {
 
     @PostMapping("/send")
     public String sendMessage(SendMessageForm message, RedirectAttributes redirectAttributes) {
-        Message ownerMessage = messageRepository.createOwnerMessage(message);
-        Message clientMessage = messageRepository.createCustomerMessage(message);
+        Message ownerMessage = messageCreator.createOwnerMessage(message);
+        Message clientMessage = messageCreator.createCustomerMessage(message);
 
         try {
             mailService.sendMail(ownerMessage);
