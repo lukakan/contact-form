@@ -22,12 +22,12 @@ public class MessageCreator {
 
     public Message createOwnerMessage(SendMessageForm messageForm) {
         String body = prepareMessageBody(messageForm, OWNER_MAIL_TEMPLATE);
-        return new Message(messageForm, body, domainMail, domainMail, messageForm.getAuthorEmailAddress());
+        return new Message(messageForm.getTitle(), body, domainMail, domainMail, messageForm.getAuthorEmailAddress());
     }
 
     public Message createCustomerMessage(SendMessageForm messageForm) {
         String body = prepareMessageBody(messageForm, CUSTOMER_MAIL_TEMPLATE);
-        return new Message(messageForm, body, messageForm.getAuthorEmailAddress(), domainMail, domainMail);
+        return new Message(messageForm.getTitle(), body, messageForm.getAuthorEmailAddress(), domainMail, domainMail);
     }
 
     private String prepareMessageBody(SendMessageForm message, String template) {

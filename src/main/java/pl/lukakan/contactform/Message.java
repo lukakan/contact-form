@@ -9,10 +9,10 @@ public class Message {
     private final String sendTo;
     private final String sendFrom;
 
-    public Message(SendMessageForm messageForm, String body, String sendTo, String sendFrom, String replyTo) {
+    public Message(String title, String body, String sendTo, String sendFrom, String replyTo) {
         this.sendTo = sendTo;
         this.body = body;
-        this.title = messageForm.getTitle();
+        this.title = title;
         this.replyTo = replyTo;
         this.sendFrom = sendFrom;
     }

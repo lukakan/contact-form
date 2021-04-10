@@ -25,9 +25,6 @@ function validateForm() {
     let titleHolder = document.getElementById("title");
     let titleValidator = document.getElementById("title-validator");
     let titleMessage = "Tytuł nie może być pusty";
-    if(!(checkIfNotEmptyAndPutProperMessage(titleMessage, titleHolder, titleValidator))){
-        return false;
-    }
 
     if(!(titleHolder.value.length>0)){
         titleValidator.innerHTML = titleMessage;
@@ -39,9 +36,6 @@ function validateForm() {
     let contentHolder = document.getElementById("content");
     let contentValidator = document.getElementById("content-validator");
     let contentMessage = "Treść nie może być pusta";
-    if(!( checkIfNotEmptyAndPutProperMessage(contentMessage, contentHolder, contentValidator))){
-        return false;
-    }
 
     if(!(contentHolder.value.length>0)){
         contentValidator.innerHTML = contentMessage;
