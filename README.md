@@ -5,6 +5,7 @@ Mini project with contact form that allows communication between page owner and 
 * spring-boot 
 * thymeleaf
 * html
+* Bootstrap
 * java script
 
 
